@@ -168,7 +168,7 @@
      <string>Фамилия</string>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_no">
+   <widget class="QRadioButton" name="radioButton_male">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -371,7 +371,7 @@
      </size>
     </property>
    </widget>
-   <widget class="QRadioButton" name="radioButton_female_2">
+   <widget class="QRadioButton" name="radioButton_no">
     <property name="geometry">
      <rect>
       <x>450</x>
