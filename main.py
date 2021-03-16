@@ -73,7 +73,7 @@ class Reg(QtWidgets.QMainWindow):
             return
 
         try:
-            con = sqlite3.connect("DATABASE.db")
+            con = sqlite3.connect("../DATABASE.db")
             curs = con.cursor()
             curs.execute(
                 f"""INSERT INTO UserForm(name, surname, otchestvo, password, email, sex) VALUES("{Name}", "{Surname}", "{Otch}", "{Password}", "{Login}", "{Sex}") """)
@@ -120,7 +120,7 @@ class Join(QtWidgets.QMainWindow):
             self.ui.label_error.show()
             return
 
-        con = sqlite3.connect("DATABASE.db")
+        con = sqlite3.connect("../DATABASE.db")
         curs = con.cursor()
         ex = curs.execute(
             """SELECT * FROM UserForm WHERE email = "{}" and password = "{}" """.format(Login, Password)).fetchall()
