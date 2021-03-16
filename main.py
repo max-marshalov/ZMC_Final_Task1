@@ -2,6 +2,9 @@ import sys
 from PyQt5 import QtCore, QtGui, QtWidgets
 from join import *
 from reg import *
+from Zap_Step1 import *
+from Zap_Step2 import *
+from menu import *
 import sqlite3
 
 
@@ -91,6 +94,42 @@ class Reg(QtWidgets.QMainWindow):
             print(er)
 
 
+class Zap_Step1(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        QtWidgets.QWidget.__init__(self, parent)
+        self.ui = Ui_Zap_Step1()
+        self.ui.setupUi(self)
+
+
+class Zap_Step2(QtWidgets.QMainWindow):
+    def __init__(self, parent=None):
+        QtWidgets.QWidget.__init__(self, parent)
+        self.ui = Ui_Zap_Step2()
+        self.ui.setupUi(self)
+
+
+class Menu(QtWidgets.QMainWindow):
+    def __init__(self, parent=None, person=None):
+        QtWidgets.QWidget.__init__(self, parent)
+        self.ui = Ui_Menu()
+        self.ui.setupUi(self)
+
+        self.person = person
+
+        self.ui.pushButton.clicked.connect(self.go_zap)
+        self.ui.pushButton_2.clicked.connect(self.go_watch)
+        self.ui.pushButton_3.clicked.connect(self.go_change)
+
+    def go_zap(self):
+        pass
+
+    def go_watch(self):
+        pass
+
+    def go_change(self):
+        pass
+
+
 class Join(QtWidgets.QMainWindow):
     def __init__(self, parent=None):
         QtWidgets.QWidget.__init__(self, parent)
@@ -120,7 +159,7 @@ class Join(QtWidgets.QMainWindow):
             self.ui.label_error.show()
             return
 
-        con = sqlite3.connect("../DATABASE.db")
+        con = sqlite3.connect("DATABASE.db")
         curs = con.cursor()
         ex = curs.execute(
             """SELECT * FROM UserForm WHERE email = "{}" and password = "{}" """.format(Login, Password)).fetchall()
@@ -129,9 +168,15 @@ class Join(QtWidgets.QMainWindow):
         if not ex:
             self.ui.label_error.setText("Неверный логин или пароль")
             self.ui.label_error.show()
+            return
         else:
-            self.ui.label_error.setText("OK")
-            self.ui.label_error.show()
+            try:
+                self.win = Menu(self, person=ex)
+                self.close()
+                self.win.show()
+
+            except Exception as er:
+                print(er)
 
     def go_reg(self):
         try:
