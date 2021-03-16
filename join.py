@@ -22,6 +22,7 @@ class Ui_Join(object):
         self.edit_login.setObjectName("edit_login")
         self.edit_password = QtWidgets.QLineEdit(self.centralwidget)
         self.edit_password.setGeometry(QtCore.QRect(100, 140, 331, 31))
+        self.edit_password.setEchoMode(QtWidgets.QLineEdit.Password)
         self.edit_password.setObjectName("edit_password")
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(220, 30, 281, 31))
@@ -37,6 +38,16 @@ class Ui_Join(object):
         self.btn_reg = QtWidgets.QPushButton(self.centralwidget)
         self.btn_reg.setGeometry(QtCore.QRect(300, 180, 131, 31))
         self.btn_reg.setObjectName("btn_reg")
+        self.label_error = QtWidgets.QLabel(self.centralwidget)
+        self.label_error.setGeometry(QtCore.QRect(100, 230, 331, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.label_error.setFont(font)
+        self.label_error.setStyleSheet("QLabel{\n"
+"color: rgb(255, 0, 0);\n"
+"}")
+        self.label_error.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_error.setObjectName("label_error")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -48,3 +59,4 @@ class Ui_Join(object):
         self.label.setText(_translate("MainWindow", "Вход"))
         self.btn_join.setText(_translate("MainWindow", "Войти"))
         self.btn_reg.setText(_translate("MainWindow", "Регистрация"))
+        self.label_error.setText(_translate("MainWindow", "Введите логин и пароль"))
