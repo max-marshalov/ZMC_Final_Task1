@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLineEdit" name="edit_code">
+   <widget class="QLineEdit" name="edit_house">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="inputMask">
-     <string>000-000</string>
+     <string/>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_next">
@@ -55,10 +55,10 @@
      </font>
     </property>
     <property name="text">
-     <string>Дата выдачи</string>
+     <string>Квартира</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="edit_date_vi">
+   <widget class="QLineEdit" name="edit_flat">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -68,7 +68,10 @@
      </rect>
     </property>
     <property name="inputMask">
-     <string>00.00.0000</string>
+     <string/>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
@@ -86,28 +89,10 @@
      </font>
     </property>
     <property name="text">
-     <string>Выдан</string>
+     <string>Улица</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_8">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>300</y>
-      <width>221</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Скан 1 страницы</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="edit_vidan">
+   <widget class="QLineEdit" name="edit_street">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -117,7 +102,7 @@
      </rect>
     </property>
    </widget>
-   <widget class="QLineEdit" name="edit_number">
+   <widget class="QLineEdit" name="edit_city">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -148,10 +133,10 @@
      </font>
     </property>
     <property name="text">
-     <string>Серия</string>
+     <string>Индекс</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="edit_serial">
+   <widget class="QLineEdit" name="edit_index">
     <property name="geometry">
      <rect>
       <x>370</x>
@@ -205,20 +190,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Код подразделения</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_load_photo">
-    <property name="geometry">
-     <rect>
-      <x>370</x>
-      <y>310</y>
-      <width>75</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Загрузить</string>
+     <string>Дом</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
@@ -257,7 +229,33 @@
      </font>
     </property>
     <property name="text">
-     <string>Номер</string>
+     <string>Город</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="dowload">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>320</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Скачать шаблон согласия</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="load">
+    <property name="geometry">
+     <rect>
+      <x>160</x>
+      <y>400</y>
+      <width>171</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Загрузить согласие</string>
     </property>
    </widget>
   </widget>
