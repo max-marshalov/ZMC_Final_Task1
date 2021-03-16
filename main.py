@@ -16,9 +16,6 @@ class Reg(QtWidgets.QMainWindow):
         self.ui.pushButton.clicked.connect(self.go_back)
         self.ui.btn_reg.clicked.connect(self.register)
 
-        # self.con = sqlite3.connect("DATABASE.db")
-        # self.curs = self.con.cursor()
-
     def go_back(self):
         try:
             self.win = Join(self)
@@ -75,10 +72,23 @@ class Reg(QtWidgets.QMainWindow):
             self.ui.label_error.show()
             return
 
-        # self.curs.execute(
-        #     """INSRET INTO UserForm(name, surname, otchestvo, login, password) VALUES("{}", "{}", "{}", "{}", "{}") """)
-        # self.con.commit()
-        # self.con.close()
+        try:
+            con = sqlite3.connect("DATABASE.db")
+            curs = con.cursor()
+            curs.execute(
+                f"""INSERT INTO UserForm(name, surname, otchestvo, password, email, sex) VALUES("{Name}", "{Surname}", "{Otch}", "{Password}", "{Login}", "{Sex}") """)
+            con.commit()
+            con.close()
+        except sqlite3.IntegrityError:
+            print("Этот email уже используется")
+
+        try:
+            self.win = Join(self)
+            self.close()
+            self.win.show()
+
+        except Exception as er:
+            print(er)
 
 
 class Join(QtWidgets.QMainWindow):
@@ -87,11 +97,41 @@ class Join(QtWidgets.QMainWindow):
         self.ui = Ui_Join()
         self.ui.setupUi(self)
 
+        self.ui.label_error.hide()
+
         self.ui.btn_join.clicked.connect(self.go_join)
         self.ui.btn_reg.clicked.connect(self.go_reg)
 
     def go_join(self):
-        pass
+        Login = None
+        Password = None
+
+        if len(self.ui.edit_login.text()) > 0:
+            Login = self.ui.edit_login.text()
+        else:
+            self.ui.label_error.setText("Введите логин и пароль")
+            self.ui.label_error.show()
+            return
+
+        if len(self.ui.edit_password.text()) > 0:
+            Password = self.ui.edit_password.text()
+        else:
+            self.ui.label_error.setText("Введите логин и пароль")
+            self.ui.label_error.show()
+            return
+
+        con = sqlite3.connect("DATABASE.db")
+        curs = con.cursor()
+        ex = curs.execute(
+            """SELECT * FROM UserForm WHERE email = "{}" and password = "{}" """.format(Login, Password)).fetchall()
+        con.commit()
+        con.close()
+        if not ex:
+            self.ui.label_error.setText("Неверный логин или пароль")
+            self.ui.label_error.show()
+        else:
+            self.ui.label_error.setText("OK")
+            self.ui.label_error.show()
 
     def go_reg(self):
         try:
